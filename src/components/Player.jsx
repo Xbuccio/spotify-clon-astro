@@ -46,18 +46,12 @@ const SongControl = ({ audio }) => {
   const [currentTime, setCurrentTime] = useState(0)
 
   useEffect(() => {
-    const handleTimeUpdate = () => {
-      setCurrentTime(audioRef.current.currentTime);
-    };
-  
-    if (audioRef.current) {
-      audioRef.current.addEventListener('timeupdate', handleTimeUpdate);
-  
-      return () => {
-        audioRef.current.removeEventListener('timeupdate', handleTimeUpdate);
-      };
+    audio.current.addEventListener('timeupdate', handleTimeUpdate)
+
+    return () => {
+      audio.current.removeEventListener('timeupdate', handleTimeUpdate)
     }
-  }, [audioRef.current]);
+  }, [])
 
   const handleTimeUpdate = () => {
     setCurrentTime(audio.current.currentTime)
@@ -138,7 +132,7 @@ const VolumeControl = () => {
 
 export function Player () {
   const { currentMusic, isPlaying, setIsPlaying, volume } = usePlayerStore(state => state)
-  const audioRef = useRef(new Audio());
+  const audioRef = useRef()
 
   useEffect(() => {
     isPlaying
@@ -147,10 +141,8 @@ export function Player () {
   }, [isPlaying])
 
   useEffect(() => {
-    if (!isNaN(volume) && isFinite(volume)) {
-      audioRef.current.volume = Math.max(0, Math.min(1, volume));
-    }
-  }, [volume]);
+    audioRef.current.volume = volume
+  }, [volume])
 
   useEffect(() => {
     const { song, playlist, songs } = currentMusic

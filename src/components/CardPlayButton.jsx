@@ -1,4 +1,3 @@
-import React from 'react';
 import { Pause, Play } from "./Player.jsx";
 import { usePlayerStore } from "../store/PlayerStore.js";
 
@@ -32,8 +31,8 @@ export function CardPlayButton ({ id, size = 'small' }) {
 
 
   return (
-    <div className="card-play-button rounded-full bg-green-500 p-4">
-      <Play />
-    </div>
+    <button onClick={handleClick} className="card-play-button rounded-full bg-green-500 p-4 hover:scale-105 transition hover:bg-green-400">
+      {isPlayingPlaylist ? <Pause className={iconClassName} /> : <Play className={iconClassName} />}
+    </button>
   )
 }

@@ -8,17 +8,17 @@ import SideMenuCard from "./SideMenuCard.astro";
 
 ---
 
-<nav class="flex flex-col flex-1 gap-2 ">
+<nav class="flex flex-col flex-1 gap-2">
   <div class="bg-zinc-900 rounded-lg p-2">
     <ul>
       <SideMenuItems href="/">
         <HomeIcon />
-         Home
+         Inicio
       </SideMenuItems>
 
       <SideMenuItems href="/#">
         <SearchIcon />
-         Search
+         Buscar
       </SideMenuItems>
     </ul>
   </div>
@@ -27,14 +27,10 @@ import SideMenuCard from "./SideMenuCard.astro";
     <ul>
       <SideMenuItems href="/">
         <LibraryIcon />
-         tu Biblioteca
+         Tu biblioteca
       </SideMenuItems>
 
-      {
-        playlists.map((playslist) => {
-          return <SideMenuCard playslist={playslist} />
-        })
-      }
+      {playlists.map((playlist) => <SideMenuCard playlist={playlist} />)}
     </ul>
   </div>
 </nav>

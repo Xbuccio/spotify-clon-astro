@@ -2,11 +2,11 @@
 import type { Playlist } from "../lib/data";
 
 interface Props {
-  playslist: Playlist;
+  playlist: Playlist; 
 }
 
-const { playslist } = Astro.props;
-const { id, cover, title, artists, color } = playslist;
+const { playlist } = Astro.props;
+const { id, cover, title, artists } = playlist;  // Mantener "playlist" aquí
 
 const artistsString = artists.join(", ");
 ---
